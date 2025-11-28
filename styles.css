@@ -1,0 +1,205 @@
+/* ------------------------------
+   GLOBAL THEME
+------------------------------ */
+:root {
+  --bg: #0b0b0d;
+  --card: #0f1315;
+  --muted: #9aa3ad;
+  --accent: #4da3ff;
+  --accent-green: #6bff8a;
+  --accent-yellow: #ffe97a;
+  --path: #ff8c6a;
+  --wall: #111;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #050506 0%, #0b0b0d 100%);
+  color: #e6eef6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------
+   HEADER
+------------------------------ */
+header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  margin-bottom: 12px;
+}
+
+header h1 {
+  margin: 8px 0 4px;
+  font-size: 28px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.wrap {
+  max-width: 980px;
+  margin: 24px auto;
+  padding: 0 18px;
+}
+
+/* ------------------------------
+   CARD / LAYOUT
+------------------------------ */
+.card {
+  background: var(--card);
+  padding: 18px 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 24px rgba(2,6,10,0.6);
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 22px;
+}
+
+@media(max-width: 900px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ------------------------------
+   VISUALIZER CONTAINERS
+------------------------------ */
+.viz {
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 16px;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  background: #060607;
+  border-radius: 6px;
+}
+
+/* ------------------------------
+   CONTROLS
+------------------------------ */
+.controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+button {
+  background: var(--accent);
+  color: #041423;
+  border: none;
+  padding: 7px 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.07);
+  color: var(--muted);
+}
+
+/* ------------------------------
+   INFO BOXES
+------------------------------ */
+.info-box {
+  background: rgba(255,255,255,0.03);
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.info-box ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+/* ------------------------------
+   SORTING VISUALIZER
+------------------------------ */
+#bars {
+  display: flex;
+  align-items: flex-end;
+  height: 200px;
+  background: #0b0b0d;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.03);
+  padding: 10px;
+  gap: 4px;
+}
+
+.bar {
+  background: linear-gradient(180deg, var(--accent), #2a74c7);
+  border-radius: 3px;
+  flex: 1;
+  color: #041423;
+  font-size: 11px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2px;
+}
+
+/* ------------------------------
+   RACE VISUALIZER
+------------------------------ */
+.race-container {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.race-bars {
+  height: 150px;
+  background: #0b0b0d;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.03);
+  padding: 6px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.center {
+  text-align: center;
+  margin-top: 6px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
