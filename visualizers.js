@@ -309,6 +309,17 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms / sortSpeed));
 }
 
+document.getElementById("speedUpBtn").onclick = () => {
+  sortSpeed = Math.min(8, sortSpeed * 2);
+  document.getElementById("speedDisplay").textContent = sortSpeed + "×";
+};
+
+document.getElementById("slowDownBtn").onclick = () => {
+  sortSpeed = Math.max(0.25, sortSpeed / 2);
+  document.getElementById("speedDisplay").textContent = sortSpeed + "×";
+};
+
+
 /* ------------------------------
    BUBBLE SORT
 ------------------------------ */
