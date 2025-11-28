@@ -280,6 +280,7 @@ const sortRun = document.getElementById("sortRun");
 
 let arr = [];
 let sorting = false;
+let sortSpeed = 1;
 const BAR_COUNT = 20;
 
 function genArray() {
@@ -305,7 +306,7 @@ function renderBars(array, container, height) {
 }
 
 function sleep(ms) {
-  return new Promise(res => setTimeout(res, ms));
+  return new Promise(resolve => setTimeout(resolve, ms / sortSpeed));
 }
 
 /* ------------------------------
