@@ -71,6 +71,50 @@ h2 {
   gap: 20px;
 }
 
+/* Force layout to center on very small screens */
+@media (max-width: 480px) {
+
+  .wrap {
+    padding: 0 10px;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  /* Maze canvas shrinks */
+  #mazeCanvas {
+    width: 100%;
+    max-width: 330px;
+    margin: 0 auto;
+    display: block;
+  }
+   
+  #mazeGenBtn,
+  #mazeResetBtn {
+  background: var(--accent) !important;
+  color: #041423 !important;
+  }
+
+   
+  /* Sorting bars shrink vertically */
+  #bars {
+    height: 140px !important;
+  }
+
+  /* Sorting race bars shrink */
+  .race-bars {
+    height: 100px !important;
+  }
+
+  /* Prevent label overlap */
+  .race-container {
+    flex-direction: column;
+  }
+}
+
+
 /* Mobile fallback */
 @media (max-width: 840px) {
   .two-col {
