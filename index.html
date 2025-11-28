@@ -128,6 +128,56 @@
         </p>
     </div>
 
+    <div class="container">
+  <h3>Algorithm Visualizer Demo</h3>
+  <canvas id="gridCanvas" width="400" height="400" style="border:1px solid #555; background: #111;"></canvas>
+  <br>
+  <button id="runBFS" style="margin-top: 15px; padding: 8px 16px; background: #4da3ff; color: #fff; border: none; border-radius: 4px;">Run BFS (demo)</button>
+</div>
+
+<script>
+  const canvas = document.getElementById('gridCanvas');
+  const ctx = canvas.getContext('2d');
+  const cols = 20, rows = 20;
+  const cellSize = 20;
+  const grid = [];
+
+  // initialize grid
+  for (let r = 0; r < rows; r++) {
+    grid[r] = [];
+    for (let c = 0; c < cols; c++) {
+      grid[r][c] = { visited: false };
+    }
+  }
+
+  function drawGrid() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        ctx.strokeStyle = '#444';
+        ctx.strokeRect(c * cellSize, r * cellSize, cellSize, cellSize);
+      }
+    }
+  }
+
+  function runDemoBFS() {
+    const path = [];
+    // Simple demo: just mark a straight diagonal path with delay
+    let r = 0, c = 0;
+    function step() {
+      if (r >= rows || c >= cols) return;
+      ctx.fillStyle = '#4da3ff';
+      ctx.fillRect(c * cellSize + 1, r * cellSize + 1, cellSize - 2, cellSize - 2);
+      r++; c++;
+      setTimeout(step, 50);
+    }
+    step();
+  }
+
+  drawGrid();
+  document.getElementById('runBFS').onclick = runDemoBFS;
+</script>
+
     <!-- Experience Section -->
     <div class="container">
         <h3>Work Experience</h3>
