@@ -270,6 +270,33 @@ document.getElementById("mazeResetBtn").onclick = () => {
   }
 };
 
+/* ==========================================================
+   SOUND ENGINE (classic “beep” per bar comparison)
+========================================================== */
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function playBeep(frequency = 440, duration = 30) {
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  osc.frequency.value = frequency;
+  osc.type = "square";           // retro-style sound
+  gain.gain.value = 0.15;        // low volume
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration / 1000);
+}
+
+function beepForValue(val) {
+  // Convert bar height (10–100) into frequency
+  const freq = 200 + (val * 5);
+  playBeep(freq, 25);
+}
+
+
 /*************************************************
  * SORTING VISUALIZER
  *************************************************/
