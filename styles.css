@@ -1,242 +1,62 @@
-/* ------------------------------
-   GLOBAL THEME
------------------------------- */
+
 :root {
   --bg: #0b0b0d;
   --card: #111418;
   --muted: #9aa3ad;
   --accent: #4da3ff;
-  --green: #64ff9c;
-  --yellow: #ffe97a;
+  --accent-green: #64ff9c;
+  --accent-yellow: #ffe97a;
   --path: #ff8c6a;
 }
 
-/* Ensure mobile renders at proper scale */
-html, body {
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
-  color: #e9eef5;
-  font-family: Inter, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
+/* Basic resets and typography */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: #e9eef5; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 
-.wrap {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 14px;
-}
+.wrap { max-width: 960px; margin: 0 auto; padding: 14px; }
 
-/* -------------------------------------------------------
-   HEADER
--------------------------------------------------------- */
-header {
-  text-align: center;
-  padding: 32px 12px 18px;
-}
+/* Header */
+.header { text-align: center; padding-top: 20px; padding-bottom: 10px; }
+.profile-img { width: 125px; height: 125px; object-fit: cover; border-radius: 50%; border: 3px solid rgba(255,255,255,0.06); display: inline-block; margin-bottom: 10px; }
+h1 { margin: 6px 0 4px; }
+.muted { color: var(--muted); font-size: 14px; }
 
-.profile-img {
-  width: 125px;
-  height: 125px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 10px;
-  border: 3px solid rgba(255,255,255,0.05);
-}
+/* Cards and grid */
+.card { background: var(--card); border-radius: 10px; padding: 16px; margin-bottom: 18px; box-shadow: 0 6px 22px rgba(0,0,0,0.45); }
+.two-col { display: grid; grid-template-columns: 1fr 340px; gap: 18px; align-items: start; }
 
-.muted {
-  color: var(--muted);
-}
-
-/* -------------------------------------------------------
-   CARDS
--------------------------------------------------------- */
-.card {
-  background: var(--card);
-  border-radius: 10px;
-  padding: 18px 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
-}
-
-h2 {
-  margin: 0 0 14px;
-  font-size: 20px;
-}
-
-/* Two-column layout (desktop) */
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 330px;
-  gap: 20px;
-}
-
-/* Force layout to center on very small screens */
-@media (max-width: 480px) {
-
-  .wrap {
-    padding: 0 10px;
-  }
-
-  .two-col {
-    grid-template-columns: 1fr !important;
-    gap: 12px;
-  }
-
-  /* Maze canvas shrinks */
-  #mazeCanvas {
-    width: 100%;
-    max-width: 330px;
-    margin: 0 auto;
-    display: block;
-  }
-   
-  #mazeGenBtn,
-  #mazeResetBtn {
-  background: var(--accent) !important;
-  color: #041423 !important;
-  }
-
-   
-  /* Sorting bars shrink vertically */
-  #bars {
-    height: 140px !important;
-  }
-
-  /* Sorting race bars shrink */
-  .race-bars {
-    height: 100px !important;
-  }
-
-  /* Prevent label overlap */
-  .race-container {
-    flex-direction: column;
-  }
-}
-
-
-/* Mobile fallback */
 @media (max-width: 840px) {
-  .two-col {
-    grid-template-columns: 1fr;
-  }
+  /* Single column on mobile - Option A */
+  .two-col { grid-template-columns: 1fr; }
 }
 
-/* -------------------------------------------------------
-   MAZE + SORTING CANVAS
--------------------------------------------------------- */
+/* Canvas styling */
+canvas { width: 100%; height: auto; border-radius: 6px; background: #050506; display: block; }
 
-canvas {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  background: #050506;
+/* Controls */
+.controls { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; align-items: center; }
+button { padding: 8px 12px; border-radius: 8px; font-weight: 600; border: none; background: var(--accent); color: #041423; cursor: pointer; }
+button.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.07); color: var(--muted); }
+.info-box { background: rgba(255,255,255,0.02); padding: 10px 12px; border-radius: 8px; margin-top: 12px; font-size: 14px; }
+
+/* Bars (sorting) */
+#bars { display:flex; align-items:flex-end; gap:6px; height:200px; background:#070708; border-radius:6px; padding:8px; border:1px solid rgba(255,255,255,0.02); margin-top:10px; }
+.bar { flex:1; border-radius:4px; background: linear-gradient(180deg,var(--accent),#226dcb); color:#041423; font-size:11px; display:flex; align-items:flex-end; justify-content:center; padding-bottom:2px; }
+
+/* Race bars (side-by-side) */
+.race-container { display:flex; gap:12px; margin-top:10px; }
+.race-bars { flex:1; height:150px; display:flex; align-items:flex-end; gap:3px; padding:6px; background:#070708; border-radius:6px; border:1px solid rgba(255,255,255,0.02); }
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+  .wrap { padding: 12px; }
+  /* Shrink visualizers for phones */
+  #mazeCanvas { max-width: 340px; margin: 0 auto; }
+  #bars { height: 160px; }
+  .race-bars { height: 110px; }
+  .race-container { flex-direction: column; }
+  .controls { gap:6px; }
 }
 
-/* Mobile: shrink maze & race */
-@media (max-width: 600px) {
-  #mazeCanvas {
-    width: 100%;
-    height: auto;
-  }
-  .race-bars {
-    height: 120px !important;
-  }
-  #bars {
-    height: 160px !important;
-  }
-}
-
-/* -------------------------------------------------------
-   CONTROLS
--------------------------------------------------------- */
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-button {
-  padding: 7px 12px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  background: var(--accent);
-  color: #041423;
-}
-
-button.ghost {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.08);
-  color: var(--muted);
-}
-
-/* Speed adjuster */
-.speed-box {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.speed-box button {
-  padding: 4px 10px;
-}
-
-/* -------------------------------------------------------
-   SORTING BARS
--------------------------------------------------------- */
-#bars {
-  display: flex;
-  gap: 4px;
-  align-items: flex-end;
-  height: 200px;
-  background: #0b0b0d;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.03);
-}
-
-.bar {
-  flex: 1;
-  border-radius: 4px;
-  background: linear-gradient(180deg, var(--accent), #226dcb);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  color: #041423;
-  font-size: 10px;
-  padding-bottom: 2px;
-}
-
-/* Sorting race */
-.race-container {
-  display: flex;
-  gap: 16px;
-}
-
-.race-bars {
-  flex: 1;
-  height: 150px;
-  display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  background: #0b0b0d;
-  padding: 6px;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.04);
-}
-
-.center { text-align: center; }
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 18px;
-  color: var(--muted);
-  font-size: 13px;
-}
+/* Make the "Generate Maze" and "Reset" buttons visually primary (same blue) */
+#mazeGenBtn, #mazeResetBtn { background: var(--accent); color: #041423; border: none; }
