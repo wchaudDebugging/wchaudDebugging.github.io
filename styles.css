@@ -1,4 +1,6 @@
-
+/* -------------------------------
+   Global Theme
+--------------------------------*/
 :root {
   --bg: #0b0b0d;
   --card: #111418;
@@ -6,57 +8,161 @@
   --accent: #4da3ff;
   --accent-green: #64ff9c;
   --accent-yellow: #ffe97a;
-  --path: #ff8c6a;
 }
 
-/* Basic resets and typography */
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: var(--bg); color: #e9eef5; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--bg);
+  color: #e9eef5;
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+}
 
-.wrap { max-width: 960px; margin: 0 auto; padding: 14px; }
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px;
+}
 
-/* Header */
-.header { text-align: center; padding-top: 20px; padding-bottom: 10px; }
-.profile-img { width: 125px; height: 125px; object-fit: cover; border-radius: 50%; border: 3px solid rgba(255,255,255,0.06); display: inline-block; margin-bottom: 10px; }
-h1 { margin: 6px 0 4px; }
-.muted { color: var(--muted); font-size: 14px; }
+/* -------------------------------
+   Header
+--------------------------------*/
+.header {
+  text-align: center;
+  padding-top: 20px;
+}
+.profile-img {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+}
+.muted { color: var(--muted); }
 
-/* Cards and grid */
-.card { background: var(--card); border-radius: 10px; padding: 16px; margin-bottom: 18px; box-shadow: 0 6px 22px rgba(0,0,0,0.45); }
-.two-col { display: grid; grid-template-columns: 1fr 340px; gap: 18px; align-items: start; }
+/* -------------------------------
+   Cards & Layout
+--------------------------------*/
+.card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 20px;
+}
 
 @media (max-width: 840px) {
-  /* Single column on mobile - Option A */
-  .two-col { grid-template-columns: 1fr; }
+  .two-col {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Canvas styling */
-canvas { width: 100%; height: auto; border-radius: 6px; background: #050506; display: block; }
+/* -------------------------------
+   Controls / Buttons
+--------------------------------*/
+.controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
 
-/* Controls */
-.controls { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; align-items: center; }
-button { padding: 8px 12px; border-radius: 8px; font-weight: 600; border: none; background: var(--accent); color: #041423; cursor: pointer; }
-button.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.07); color: var(--muted); }
-.info-box { background: rgba(255,255,255,0.02); padding: 10px 12px; border-radius: 8px; margin-top: 12px; font-size: 14px; }
+button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--accent);
+  border: none;
+  color: #041423;
+  cursor: pointer;
+  font-weight: 600;
+}
 
-/* Bars (sorting) */
-#bars { display:flex; align-items:flex-end; gap:6px; height:200px; background:#070708; border-radius:6px; padding:8px; border:1px solid rgba(255,255,255,0.02); margin-top:10px; }
-.bar { flex:1; border-radius:4px; background: linear-gradient(180deg,var(--accent),#226dcb); color:#041423; font-size:11px; display:flex; align-items:flex-end; justify-content:center; padding-bottom:2px; }
+button.ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--muted);
+}
 
-/* Race bars (side-by-side) */
-.race-container { display:flex; gap:12px; margin-top:10px; }
-.race-bars { flex:1; height:150px; display:flex; align-items:flex-end; gap:3px; padding:6px; background:#070708; border-radius:6px; border:1px solid rgba(255,255,255,0.02); }
+button.primary {
+  background: var(--accent);
+}
 
-/* Mobile tweaks */
+/* -------------------------------
+   Maze Canvas
+--------------------------------*/
+#mazeCanvas {
+  width: 100%;
+  height: auto;
+  background: #050506;
+  border-radius: 6px;
+  display: block;
+}
+
+/* -------------------------------
+   Sorting Visualizer
+--------------------------------*/
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 200px;
+  margin-top: 10px;
+  padding: 8px;
+  background: #070708;
+  border-radius: 6px;
+}
+
+.bar {
+  flex: 1;
+  background: linear-gradient(180deg, var(--accent), #226dcb);
+  border-radius: 4px;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 2px;
+}
+
+/* -------------------------------
+   Sorting Race
+--------------------------------*/
+.race-container {
+  display: flex;
+  gap: 12px;
+}
+.race-bars {
+  height: 150px;
+  background: #070708;
+  border-radius: 6px;
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  padding: 6px;
+}
+
+/* -------------------------------
+   Mobile
+--------------------------------*/
 @media (max-width: 480px) {
-  .wrap { padding: 12px; }
-  /* Shrink visualizers for phones */
-  #mazeCanvas { max-width: 340px; margin: 0 auto; }
-  #bars { height: 160px; }
-  .race-bars { height: 110px; }
-  .race-container { flex-direction: column; }
-  .controls { gap:6px; }
-}
+  #mazeCanvas {
+    max-width: 330px;
+    margin: 0 auto;
+  }
 
-/* Make the "Generate Maze" and "Reset" buttons visually primary (same blue) */
-#mazeGenBtn, #mazeResetBtn { background: var(--accent); color: #041423; border: none; }
+  .bars {
+    height: 160px;
+  }
+
+  .race-bars {
+    height: 110px;
+  }
+
+  .race-container {
+    flex-direction: column;
+  }
+}
