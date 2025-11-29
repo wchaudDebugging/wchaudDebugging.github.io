@@ -26,6 +26,17 @@ function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
 
+// --- Desktop Rendering Fix ---
+function initRaceRender() {
+  const [arrA, arrB] = generateRaceArrays();
+  drawRaceBars(arrA, raceBarsA);
+  drawRaceBars(arrB, raceBarsB);
+}
+
+window.addEventListener('load', initRaceRender);
+window.addEventListener('resize', initRaceRender);
+
+
 /* ----------------------------------------------------------
    SOUND ENGINE
 -----------------------------------------------------------*/
