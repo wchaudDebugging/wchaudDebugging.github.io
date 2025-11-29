@@ -1,3 +1,4 @@
+
 /* ------------------------------------------------------
    Small utilities
 ------------------------------------------------------ */
@@ -78,7 +79,7 @@ const GOAL = { r: GRID - 1, c: GRID - 1 };
 let maze = [];
 let mazeRunning = false;
 
-/** Create empty maze grid (no walls) */
+/** Create empty maze grid */
 function createMaze() {
   maze = [];
   for (let r = 0; r < GRID; r++) {
@@ -134,8 +135,7 @@ function drawMaze() {
         ctx.fillRect(x + 4, y + 4, CELL - 8, CELL - 8);
       }
 
-      // FIXED: correct GOAL drawing check (was c === GOAL.r)
-      if (r === GOAL.r && c === GOAL.c) {
+      if (r === GOAL.r && c === GOAL.r) {
         ctx.fillStyle = "#ff8c6a";
         ctx.fillRect(x + 4, y + 4, CELL - 8, CELL - 8);
       }
@@ -178,69 +178,17 @@ function resetMazeState() {
   }
 }
 
-/* ------------------------------------------------------
-   Helper: shuffle copy of array
------------------------------------------------------- */
-function shuffleArray(arr) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-/* ------------------------------------------------------
-   PERFECT MAZE GENERATOR (recursive backtracker)
-   Replaces the old random-wall generator with a proper
-   carve-DFS so every maze is a perfect maze and solvable.
------------------------------------------------------- */
-function carveDFS(r, c) {
-  // mark cell as passage
-  maze[r][c].wall = false;
-
-  // directions step by two (knock down walls between)
-  const dirs = shuffleArray([
-    [1, 0],
-    [-1, 0],
-    [0, 1],
-    [0, -1],
-  ]);
-
-  for (const [dr, dc] of dirs) {
-    const nr = r + dr * 2;
-    const nc = c + dc * 2;
-
-    if (nr >= 0 && nr < GRID && nc >= 0 && nc < GRID && maze[nr][nc].wall) {
-      // knock down the wall in-between
-      maze[r + dr][c + dc].wall = false;
-      carveDFS(nr, nc);
-    }
-  }
-}
-
-/** 🔥 ALWAYS GENERATE A PERFECT MAZE FROM A CLEAN GRID */
+/** 🔥 ALWAYS GENERATE MAZE FROM A CLEAN GRID */
 function generateMaze() {
-  // Start by creating data structure (cells exist, default wall=false)
   createMaze();
+  resetMazeGridFully();  // <--- forces clean starting grid
 
-  // Fill all cells as walls first (we will carve passages)
   for (let r = 0; r < GRID; r++) {
     for (let c = 0; c < GRID; c++) {
-      maze[r][c].wall = true;
+      if ((r === START.r && c === START.c) || (r === GOAL.r && c === GOAL.c)) continue;
+      maze[r][c].wall = Math.random() < 0.27;
     }
   }
-
-  // If GRID is even, carving by steps of 2 is safer if we start on an odd index.
-  // Our grid here is 15 (odd), so start at 0,0 works; to be robust, start at 0,0 anyway.
-  carveDFS(0, 0);
-
-  // Ensure start and goal are open
-  maze[START.r][START.c].wall = false;
-  maze[GOAL.r][GOAL.c].wall = false;
-
-  // Reset any pathfinding flags/colors
-  resetMazeState();
 
   drawMaze();
 }
@@ -252,8 +200,7 @@ async function tracePath() {
     const x = cur.c * CELL;
     const y = cur.r * CELL;
     ctx.fillStyle = "#ff8c6a";
-    // Reduced padding for straighter visual path
-    ctx.fillRect(x + 2, y + 2, CELL - 4, CELL - 4);
+    ctx.fillRect(x + 4, y + 4, CELL - 8, CELL - 8);
     await sleep(40);
     cur = cur.parent;
   }
@@ -309,7 +256,6 @@ async function runDFS() {
     const cur = stack.pop();
     cur.color = "rgba(100,255,156,0.45)";
 
-    // FIXED: correct goal check
     if (cur === maze[GOAL.r][GOAL.c]) break;
 
     for (const n of neighbors(cur.r, cur.c)) {
