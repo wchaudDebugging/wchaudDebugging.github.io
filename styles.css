@@ -1,208 +1,189 @@
-/* -------------------------------
-   Global Theme
---------------------------------*/
-:root {
-  --bg: #0b0b0d;
-  --card: #111418;
-  --muted: #9aa3ad;
-  --accent: #4da3ff;
-  --accent-green: #64ff9c;
-  --accent-yellow: #ffe97a;
-}
-
-* { box-sizing: border-box; }
+/* ===========================================
+   GLOBAL
+=========================================== */
 body {
-  background: var(--bg);
-  color: #e9eef5;
   margin: 0;
-  font-family: Inter, system-ui, sans-serif;
+  background: #1a2a33;
+  font-family: Arial, sans-serif;
+  color: #e8f1f5;
 }
 
 .wrap {
-  max-width: 960px;
+  width: 90%;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 16px;
+  padding-bottom: 80px;
 }
 
-/* -------------------------------
-   Header
---------------------------------*/
+/* ===========================================
+   HEADER
+=========================================== */
 .header {
   text-align: center;
-  padding-top: 20px;
+  padding: 40px 0;
+  background: #142028;
+  margin-bottom: 25px;
 }
+
 .profile-img {
-  width: 125px;
-  height: 125px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 12px;
 }
-.muted { color: var(--muted); }
 
-/* -------------------------------
-   Cards & Layout
---------------------------------*/
+/* ===========================================
+   CARDS
+=========================================== */
 .card {
-  background: var(--card);
+  background: #173243;
+  padding: 20px;
   border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
 }
 
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 330px;
-  gap: 20px;
+.card h2 {
+  margin-top: 0;
 }
 
-@media (max-width: 840px) {
-  .two-col {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* -------------------------------
-   Controls / Buttons
---------------------------------*/
+/* ===========================================
+   CONTROLS
+=========================================== */
 .controls {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
-  margin-top: 10px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 button {
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: var(--accent);
+  background: #4da3ff;
   border: none;
-  color: #041423;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 600;
+  color: #041423;
+  font-weight: bold;
 }
 
-button.ghost {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--muted);
+button:hover {
+  background: #76bcff;
 }
 
-button.primary {
-  background: var(--accent);
-}
-
-/* -------------------------------
-   Maze Canvas
---------------------------------*/
-#mazeCanvas {
-  width: 100%;
-  height: auto;
-  background: #050506;
-  border-radius: 6px;
-  display: block;
-}
-
-/* -------------------------------
-   Sorting Visualizer
---------------------------------*/
-.bars {
-  display: flex;
-  align-items: flex-end;
-  gap: 6px;
-  height: 200px;
-  margin-top: 10px;
-  padding: 8px;
-  background: #070708;
-  border-radius: 6px;
-}
-
-.bar {
-  flex: 1;
-  background: linear-gradient(180deg, var(--accent), #226dcb);
-  border-radius: 4px;
-  font-size: 11px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding-bottom: 2px;
-}
-
-/* -------------------------------
-   Sorting Race
---------------------------------*/
-.race-container {
-  display: flex;
-  gap: 12px;
-}
-.race-bars {
-  height: 150px;
-  background: #070708;
-  border-radius: 6px;
-  display: flex;
-  gap: 3px;
-  align-items: flex-end;
+select {
   padding: 6px;
+  border-radius: 6px;
+  background: #1a2a33;
+  color: #e8f1f5;
+  border: 1px solid #35556b;
 }
 
-/* --- Desktop fix for Sorting Race --- */
-.race-row {
+.sound-label {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 20px;
-  margin-top: 15px;
+  align-items: center;
+  gap: 5px;
 }
 
-.race-col {
-  width: 45%;
-  min-width: 330px;
+/* ===========================================
+   MAZE
+=========================================== */
+#mazeCanvas {
+  display: block;
+  margin: 0 auto;
+  border-radius: 6px;
+  background: #173243;
 }
 
-/* Ensure bars are visible on desktop */
-.race-bars {
-  height: 160px !important;
+/* ===========================================
+   SORTING VISUALIZER
+=========================================== */
+.bars {
+  width: 100%;
+  height: 200px;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
   gap: 2px;
 }
 
-/* Bars are explicitly visible */
-.race-bars .bar {
+.bar {
   background: #4da3ff;
-  width: 6px;
-  min-height: 4px;
-  display: inline-block;
-}
-
-/* Winner text spacing */
-#raceWinner {
-  margin-top: 14px;
+  width: 8px;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 0.7em;
+  color: #fff;
 }
 
+/* ===========================================
+   SORTING RACE
+=========================================== */
+.race-header-controls {
+  margin-bottom: 10px;
+}
 
-/* -------------------------------
-   Mobile
---------------------------------*/
+.race-container {
+  width: 100%;
+}
+
+.race-row {
+  display: flex;
+  gap: 26px;
+  justify-content: space-between;
+}
+
+.race-col {
+  flex: 1;
+}
+
+.race-bars {
+  height: 160px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  background: #112028;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.race-bars .bar {
+  width: 6px;
+  background: #4da3ff;
+}
+
+#raceWinner {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  text-align: center;
+  color: #9be8ff;
+}
+
+/* ===========================================
+   INFO BOX
+=========================================== */
+.info {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+/* ===========================================
+   MOBILE RESPONSIVE
+=========================================== */
 @media (max-width: 480px) {
-  #mazeCanvas {
-    max-width: 330px;
-    margin: 0 auto;
+  .wrap {
+    width: 95%;
+  }
+
+  .race-row {
+    flex-direction: column;
+    gap: 20px;
   }
 
   .bars {
-    height: 160px;
+    height: 150px;
   }
 
   .race-bars {
     height: 110px;
-  }
-
-  .race-container {
-    flex-direction: column;
   }
 }
