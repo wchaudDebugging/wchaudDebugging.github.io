@@ -1,189 +1,90 @@
-/* ===========================================
-   GLOBAL
-=========================================== */
-body {
-  margin: 0;
-  background: #1a2a33;
-  font-family: Arial, sans-serif;
-  color: #e8f1f5;
+/* Minimal Elegant theme — clean, readable, professional */
+
+/* Reset & variables */
+:root {
+  --bg: #0b1114;
+  --panel: #0f1b21;
+  --muted: #9fb3be;
+  --accent: #4da3ff;
+  --glass: rgba(255,255,255,0.03);
+  --card-radius: 12px;
+  --max-width: 980px;
 }
 
-.wrap {
-  width: 90%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding-bottom: 80px;
+* { box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html,body { margin:0; padding:0; height:100%; background: linear-gradient(180deg,#071219 0%,#061014 100%); color:#eaf6ff; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+
+/* Layout wrapper */
+.wrap { width: 90%; max-width: var(--max-width); margin: 0 auto; }
+
+/* Top nav */
+.topnav { position: sticky; top:0; backdrop-filter: blur(6px); background: rgba(6,10,12,0.35); border-bottom: 1px solid rgba(255,255,255,0.02); z-index: 30; }
+.nav-inner { display:flex; align-items:center; justify-content:space-between; padding:10px 0; }
+.brand { display:flex; align-items:center; gap:10px; }
+.nav-avatar { width:36px; height:36px; border-radius:50%; object-fit:cover; border:1px solid rgba(255,255,255,0.04); }
+.brand-name { font-weight:700; letter-spacing:0.2px; }
+.nav-links a { color:var(--muted); margin-left:16px; text-decoration:none; font-size:0.95rem; }
+
+/* HERO */
+.hero { padding: 36px 0; }
+.hero-inner { display:flex; gap:24px; align-items:center; }
+.hero-left { flex:1; }
+.hero-right { width:150px; }
+.hero h1 { margin:0 0 6px; font-size:34px; font-weight:700; }
+.hero-lead { margin:0 0 12px; color:var(--muted); line-height:1.45; max-width:60ch; }
+.hero-avatar { width:150px; height:150px; object-fit:cover; border-radius:14px; border: 2px solid rgba(255,255,255,0.03); }
+
+/* Panels & cards */
+.panel { margin-bottom:22px; }
+.panel-inner { background: var(--panel); padding:18px; border-radius: var(--card-radius); box-shadow: 0 6px 24px rgba(2,6,10,0.6); }
+.panel-grid { display:grid; grid-template-columns: 1fr; gap:18px; }
+.card { background: rgba(255,255,255,0.02); padding:18px; border-radius:10px; }
+
+/* Grid for visualizers — single column on desktop but cards are contained */
+@media(min-width:1100px) {
+  .panel-grid { grid-template-columns: 1fr 420px; grid-auto-rows: min-content; gap:22px; }
+  .card:nth-child(2) { grid-column: span 1; }
 }
 
-/* ===========================================
-   HEADER
-=========================================== */
-.header {
-  text-align: center;
-  padding: 40px 0;
-  background: #142028;
-  margin-bottom: 25px;
-}
+/* Controls */
+.controls { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+.controls.small { margin-top:6px; }
+.select-inline select { padding:8px; border-radius:8px; background:transparent; color: #eaf6ff; border:1px solid rgba(255,255,255,0.04); }
+.btn { background:var(--accent); border:none; color:#05202a; padding:8px 12px; border-radius:8px; font-weight:600; cursor:pointer; }
+.btn.ghost { background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.04); }
+.sound-inline { display:flex; align-items:center; gap:8px; margin-left:12px; }
 
-.profile-img {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 12px;
-}
+/* Maze canvas */
+.maze-canvas { display:block; width:100%; max-width:330px; height:auto; margin:10px 0; border-radius:8px; border:1px solid rgba(255,255,255,0.03); background:#050707; }
 
-/* ===========================================
-   CARDS
-=========================================== */
-.card {
-  background: #173243;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.3);
-}
+/* Sorting bars */
+.bars { display:flex; gap:6px; align-items:flex-end; height:200px; background:rgba(255,255,255,0.01); padding:10px; border-radius:8px; overflow:hidden; }
+.bar { background: linear-gradient(180deg,var(--accent), #277bc1); width: 100%; flex:1; border-radius:4px 4px 2px 2px; text-align:center; color:#041423; font-size:11px; padding-bottom:4px; }
 
-.card h2 {
-  margin-top: 0;
-}
+/* Race layout */
+.race-header-controls { margin-bottom:8px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.race-container { display:flex; gap:12px; justify-content:space-between; }
+.race-column { flex:1; min-width:220px; }
+.race-bars { height:160px; background:rgba(255,255,255,0.01); display:flex; align-items:flex-end; gap:2px; padding:8px; border-radius:8px; overflow:hidden; }
+.race-bars .bar { width:6px; background:var(--accent); }
 
-/* ===========================================
-   CONTROLS
-=========================================== */
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 12px;
-}
+/* Info and muted */
+.muted { color: var(--muted); font-size:0.95rem; }
+.center { text-align:center; }
 
-button {
-  background: #4da3ff;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  color: #041423;
-  font-weight: bold;
-}
+/* Experience & skills */
+.small-panels .exp-grid { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
+.exp-card { background: rgba(255,255,255,0.01); padding:12px; border-radius:8px; width:100%; }
 
-button:hover {
-  background: #76bcff;
-}
+/* Footer */
+.site-footer { padding:18px 0; margin-top:24px; border-top:1px solid rgba(255,255,255,0.02); text-align:center; color:var(--muted); }
 
-select {
-  padding: 6px;
-  border-radius: 6px;
-  background: #1a2a33;
-  color: #e8f1f5;
-  border: 1px solid #35556b;
-}
-
-.sound-label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* ===========================================
-   MAZE
-=========================================== */
-#mazeCanvas {
-  display: block;
-  margin: 0 auto;
-  border-radius: 6px;
-  background: #173243;
-}
-
-/* ===========================================
-   SORTING VISUALIZER
-=========================================== */
-.bars {
-  width: 100%;
-  height: 200px;
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-}
-
-.bar {
-  background: #4da3ff;
-  width: 8px;
-  text-align: center;
-  font-size: 0.7em;
-  color: #fff;
-}
-
-/* ===========================================
-   SORTING RACE
-=========================================== */
-.race-header-controls {
-  margin-bottom: 10px;
-}
-
-.race-container {
-  width: 100%;
-}
-
-.race-row {
-  display: flex;
-  gap: 26px;
-  justify-content: space-between;
-}
-
-.race-col {
-  flex: 1;
-}
-
-.race-bars {
-  height: 160px;
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  background: #112028;
-  border-radius: 6px;
-  margin-top: 10px;
-}
-
-.race-bars .bar {
-  width: 6px;
-  background: #4da3ff;
-}
-
-#raceWinner {
-  margin-top: 15px;
-  font-size: 1.2rem;
-  text-align: center;
-  color: #9be8ff;
-}
-
-/* ===========================================
-   INFO BOX
-=========================================== */
-.info {
-  margin-top: 12px;
-  font-size: 0.9rem;
-}
-
-/* ===========================================
-   MOBILE RESPONSIVE
-=========================================== */
-@media (max-width: 480px) {
-  .wrap {
-    width: 95%;
-  }
-
-  .race-row {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .bars {
-    height: 150px;
-  }
-
-  .race-bars {
-    height: 110px;
-  }
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .hero-inner { flex-direction:column-reverse; align-items:center; text-align:center; gap:14px; }
+  .hero-right { width:120px; }
+  .panel-grid { grid-template-columns: 1fr; }
+  .race-container { flex-direction:column; }
+  .bars { height:160px; }
+  .race-bars { height:120px; }
 }
