@@ -1,201 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Wali Chaudhry — Algorithm Visualizers</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="/favicon.png" type="image/png">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wali Chaudhry</title>
 
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.png" type="image/png">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
 
-<header class="wrap header">
-  <img class="profile-img" src="profile_cropped.png" alt="Profile">
-  <h1>Wali Chaudhry</h1>
-  <p class="muted">Software Engineer • Full-Stack • ASP.NET • Flutter • C#</p>
-</header>
+  <header class="header">
+    <img src="profile.png" alt="Profile" class="profile-img">
+    <h1>Wali Chaudhry</h1>
+    <p>Software Developer • Data & Algorithms Enthusiast</p>
+  </header>
 
-<main class="wrap">
+  <main class="wrap">
 
-  <!-- ABOUT -->
-  <section class="card">
-    <h2>About</h2>
-    <p class="muted">
-      I build interactive tools for understanding how algorithms work.  
-      Below are visual demos for maze pathfinding (BFS, DFS, Dijkstra), sorting algorithms, and a sorting race.
-    </p>
-  </section>
+    <!-- =========================================================
+         MAZE VISUALIZER
+    ========================================================== -->
+    <section class="card">
+      <h2>Maze Pathfinder</h2>
 
-  <div class="two-col">
+      <div class="controls">
+        <button id="bfsBtn">Run BFS</button>
+        <button id="dfsBtn">Run DFS</button>
+        <button id="dijkstraBtn">Run Dijkstra</button>
+        <button id="mazeGenBtn">Generate Maze</button>
+        <button id="mazeResetBtn">Reset</button>
+      </div>
 
-    <!-- LEFT COLUMN -->
-    <div>
+      <canvas id="mazeCanvas" width="330" height="330"></canvas>
 
-      <!-- MAZE -->
-      <section class="card viz">
-        <h2>Maze Pathfinder — BFS • DFS • Dijkstra</h2>
-
-        <!-- Smaller desktop grid -->
-        <canvas id="mazeCanvas" width="330" height="330"></canvas>
-
-        <div class="controls">
-          <button id="bfsBtn">Run BFS</button>
-          <button id="dfsBtn">Run DFS</button>
-          <button id="dijkstraBtn">Run Dijkstra</button>
-          <button id="mazeGenBtn" class="primary">Generate Maze</button>
-          <button id="mazeResetBtn" class="primary">Reset</button>
-        </div>
-
-        <div class="info-box">
-          <h3>Complexity</h3>
-          <ul>
-            <li><b>BFS</b>: O(V+E) time, O(V) space</li>
-            <li><b>DFS</b>: O(V+E) time, O(V) space</li>
-            <li><b>Dijkstra</b>: O(E log V) time, O(V) space</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- SORTING VISUALIZER -->
-      <section class="card viz">
-        <h2>Sorting Visualizer</h2>
-
-        <label class="muted">Algorithm:
-          <select id="sortSelect">
-            <option value="bubble">Bubble Sort</option>
-            <option value="selection">Selection Sort</option>
-            <option value="insertion">Insertion Sort</option>
-            <option value="merge">Merge Sort</option>
-            <option value="quick">Quick Sort</option>
-            <option value="heap">Heap Sort</option>
-          </select>
-        </label>
-
-        <div id="bars" class="bars"></div>
-
-        <div class="controls">
-          <button id="sortReset">Reset</button>
-          <button id="sortRun">Run</button>
-        </div>
-
-        <div class="speed-box">
-          <span class="muted">Speed:</span>
-          <button id="slowDownBtn" class="ghost">-</button>
-          <span id="speedDisplay">1×</span>
-          <button id="speedUpBtn" class="ghost">+</button>
-
-          <label class="muted" style="margin-left:12px;">Sound:
-            <input id="soundToggle" type="checkbox" checked>
-          </label>
-        </div>
-
-        <div class="info-box">
-          <h3>Complexity (Worst / Space)</h3>
-          <ul>
-            <li><b>Bubble</b>: O(n²) / O(1)</li>
-            <li><b>Selection</b>: O(n²) / O(1)</li>
-            <li><b>Insertion</b>: O(n²) / O(1)</li>
-            <li><b>Merge</b>: O(n log n) / O(n)</li>
-            <li><b>Quick</b>: O(n²) worst, avg O(n log n) / O(log n)</li>
-            <li><b>Heap</b>: O(n log n) / O(1)</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- SORTING RACE -->
-      <section class="card viz">
-        <h2>Sorting Race — Side-by-Side</h2>
-
-        <div class="race-selects">
-          <label class="muted">Algorithm A:
-            <select id="raceA">
-              <option value="quick">Quick</option>
-              <option value="merge">Merge</option>
-              <option value="heap">Heap</option>
-              <option value="bubble">Bubble</option>
-              <option value="selection">Selection</option>
-              <option value="insertion">Insertion</option>
-            </select>
-          </label>
-
-          <label class="muted">Algorithm B:
-            <select id="raceB">
-              <option value="merge">Merge</option>
-              <option value="quick">Quick</option>
-              <option value="heap">Heap</option>
-              <option value="bubble">Bubble</option>
-              <option value="selection">Selection</option>
-              <option value="insertion">Insertion</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="race-container">
-  <div class="race-row">
-
-    <div class="race-col">
-      <label>Algorithm A:</label>
-      <select id="raceA">
-        <option value="bubble">Bubble Sort</option>
-        <option value="selection">Selection Sort</option>
-        <option value="insertion">Insertion Sort</option>
-        <option value="merge">Merge Sort</option>
-        <option value="quick">Quick Sort</option>
-        <option value="heap">Heap Sort</option>
-      </select>
-      <div id="raceBarsA" class="race-bars"></div>
-    </div>
-
-    <div class="race-col">
-      <label>Algorithm B:</label>
-      <select id="raceB">
-        <option value="bubble">Bubble Sort</option>
-        <option value="selection">Selection Sort</option>
-        <option value="insertion">Insertion Sort</option>
-        <option value="merge">Merge Sort</option>
-        <option value="quick">Quick Sort</option>
-        <option value="heap">Heap Sort</option>
-      </select>
-      <div id="raceBarsB" class="race-bars"></div>
-    </div>
-
-  </div>
-
-  <div class="controls">
-    <button id="raceRun">Race!</button>
-    <button id="raceReset">Reset</button>
-  </div>
-
-  <div id="raceWinner"></div>
-</div>
-
-
-    <!-- RIGHT COLUMN -->
-    <div>
-      <section class="card">
-        <h2>Experience</h2>
-        <p class="muted"><b>Software Engineer — MedSpeed (2025)</b></p>
-        <ul class="muted">
-          <li>ASP.NET (C#), Flutter (Dart)</li>
-          <li>REST APIs, UI improvements, testing</li>
+      <div class="info">
+        <h3>Algorithm Complexities</h3>
+        <ul>
+          <li><strong>BFS:</strong> Time O(V+E), Space O(V)</li>
+          <li><strong>DFS:</strong> Time O(V+E), Space O(V)</li>
+          <li><strong>Dijkstra:</strong> Time O(E log V), Space O(V)</li>
         </ul>
-      </section>
+      </div>
+    </section>
 
-      <section class="card">
-        <h2>Skills</h2>
-        <p class="muted">C#, .NET, Flutter, JavaScript, Python, SQL, GitHub</p>
-      </section>
-    </div>
+    <!-- =========================================================
+         SORTING VISUALIZER
+    ========================================================== -->
+    <section class="card">
+      <h2>Sorting Visualizer</h2>
 
-  </div>
+      <div class="controls">
+        <select id="sortSelect">
+          <option value="bubble">Bubble Sort</option>
+          <option value="selection">Selection Sort</option>
+          <option value="insertion">Insertion Sort</option>
+          <option value="merge">Merge Sort</option>
+          <option value="quick">Quick Sort</option>
+          <option value="heap">Heap Sort</option>
+        </select>
 
-</main>
+        <button id="sortRun">Run</button>
+        <button id="sortReset">Reset</button>
+      </div>
 
-<footer class="wrap muted">
-  © 2025 Wali Chaudhry — GitHub Pages
-</footer>
+      <div class="controls">
+        <button id="slowDownBtn">Slow Down</button>
+        <button id="speedUpBtn">Speed Up</button>
+        <span>Speed: <span id="speedDisplay">1×</span></span>
 
-<script src="visualizers.js"></script>
+        <label class="sound-label">
+          <input type="checkbox" id="soundToggle" checked>
+          Sound
+        </label>
+      </div>
+
+      <div id="bars" class="bars"></div>
+
+      <div class="info">
+        <h3>Sorting Complexities</h3>
+        <ul>
+          <li><strong>Bubble:</strong> O(n²) time, O(1) space</li>
+          <li><strong>Selection:</strong> O(n²) time, O(1) space</li>
+          <li><strong>Insertion:</strong> O(n²) time, O(1) space</li>
+          <li><strong>Merge:</strong> O(n log n) time, O(n) space</li>
+          <li><strong>Quick:</strong> Avg O(n log n), Worst O(n²)</li>
+          <li><strong>Heap:</strong> O(n log n) time, O(1) space</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SORTING RACE
+    ========================================================== -->
+    <section class="card">
+      <h2>Sorting Race - Side-by-Side</h2>
+
+      <div class="controls race-header-controls">
+        <button id="raceRun">Race!</button>
+        <button id="raceReset">Reset</button>
+      </div>
+
+      <div class="race-container">
+        <div class="race-row">
+
+          <div class="race-col">
+            <label>Algorithm A:</label>
+            <select id="raceA">
+              <option value="bubble">Bubble Sort</option>
+              <option value="selection">Selection Sort</option>
+              <option value="insertion">Insertion Sort</option>
+              <option value="merge">Merge Sort</option>
+              <option value="quick">Quick Sort</option>
+              <option value="heap">Heap Sort</option>
+            </select>
+
+            <div id="raceBarsA" class="race-bars"></div>
+          </div>
+
+          <div class="race-col">
+            <label>Algorithm B:</label>
+            <select id="raceB">
+              <option value="bubble">Bubble Sort</option>
+              <option value="selection">Selection Sort</option>
+              <option value="insertion">Insertion Sort</option>
+              <option value="merge">Merge Sort</option>
+              <option value="quick">Quick Sort</option>
+              <option value="heap">Heap Sort</option>
+            </select>
+
+            <div id="raceBarsB" class="race-bars"></div>
+          </div>
+
+        </div>
+
+        <div id="raceWinner"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         EXPERIENCE
+    ========================================================== -->
+    <section class="card">
+      <h2>Experience</h2>
+      <p>Junior Analyst • Software Developer • Data Visualization</p>
+    </section>
+
+    <!-- =========================================================
+         SKILLS
+    ========================================================== -->
+    <section class="card">
+      <h2>Skills</h2>
+      <ul>
+        <li>Python, JavaScript, SQL</li>
+        <li>React, Flask, Node.js</li>
+        <li>Data Structures & Algorithms</li>
+        <li>Cloud & Backend Development</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="visualizers.js"></script>
 </body>
 </html>
