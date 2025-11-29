@@ -20,9 +20,7 @@
 
   <main class="wrap">
 
-    <!-- =========================================================
-         MAZE VISUALIZER
-    ========================================================== -->
+    <!-- Maze -->
     <section class="card">
       <h2>Maze Pathfinder</h2>
 
@@ -46,9 +44,7 @@
       </div>
     </section>
 
-    <!-- =========================================================
-         SORTING VISUALIZER
-    ========================================================== -->
+    <!-- Sorting Visualizer -->
     <section class="card">
       <h2>Sorting Visualizer</h2>
 
@@ -92,13 +88,31 @@
       </div>
     </section>
 
-    <!-- =========================================================
-         SORTING RACE
-    ========================================================== -->
+    <!-- Sorting Race -->
     <section class="card">
       <h2>Sorting Race - Side-by-Side</h2>
 
       <div class="controls race-header-controls">
+        <label>Algorithm A:</label>
+        <select id="raceA">
+          <option value="bubble">Bubble Sort</option>
+          <option value="selection">Selection Sort</option>
+          <option value="insertion">Insertion Sort</option>
+          <option value="merge">Merge Sort</option>
+          <option value="quick">Quick Sort</option>
+          <option value="heap">Heap Sort</option>
+        </select>
+
+        <label>Algorithm B:</label>
+        <select id="raceB">
+          <option value="bubble">Bubble Sort</option>
+          <option value="selection">Selection Sort</option>
+          <option value="insertion">Insertion Sort</option>
+          <option value="merge">Merge Sort</option>
+          <option value="quick">Quick Sort</option>
+          <option value="heap">Heap Sort</option>
+        </select>
+
         <button id="raceRun">Race!</button>
         <button id="raceReset">Reset</button>
       </div>
@@ -107,30 +121,10 @@
         <div class="race-row">
 
           <div class="race-col">
-            <label>Algorithm A:</label>
-            <select id="raceA">
-              <option value="bubble">Bubble Sort</option>
-              <option value="selection">Selection Sort</option>
-              <option value="insertion">Insertion Sort</option>
-              <option value="merge">Merge Sort</option>
-              <option value="quick">Quick Sort</option>
-              <option value="heap">Heap Sort</option>
-            </select>
-
             <div id="raceBarsA" class="race-bars"></div>
           </div>
 
           <div class="race-col">
-            <label>Algorithm B:</label>
-            <select id="raceB">
-              <option value="bubble">Bubble Sort</option>
-              <option value="selection">Selection Sort</option>
-              <option value="insertion">Insertion Sort</option>
-              <option value="merge">Merge Sort</option>
-              <option value="quick">Quick Sort</option>
-              <option value="heap">Heap Sort</option>
-            </select>
-
             <div id="raceBarsB" class="race-bars"></div>
           </div>
 
@@ -140,17 +134,13 @@
       </div>
     </section>
 
-    <!-- =========================================================
-         EXPERIENCE
-    ========================================================== -->
+    <!-- Experience -->
     <section class="card">
       <h2>Experience</h2>
       <p>Junior Analyst • Software Developer • Data Visualization</p>
     </section>
 
-    <!-- =========================================================
-         SKILLS
-    ========================================================== -->
+    <!-- Skills -->
     <section class="card">
       <h2>Skills</h2>
       <ul>
