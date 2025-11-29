@@ -131,24 +131,44 @@
         </div>
 
         <div class="race-container">
-          <div>
-            <div id="raceBarsA" class="race-bars"></div>
-            <p class="muted center">Algorithm A</p>
-          </div>
-          <div>
-            <div id="raceBarsB" class="race-bars"></div>
-            <p class="muted center">Algorithm B</p>
-          </div>
-        </div>
+  <div class="race-row">
 
-        <div class="controls">
-          <button id="raceReset" class="ghost">Reset Both</button>
-          <button id="raceRun">Start Race</button>
-          <span id="raceWinner" class="muted" style="margin-left:auto;"></span>
-        </div>
-      </section>
-
+    <div class="race-col">
+      <label>Algorithm A:</label>
+      <select id="raceA">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="insertion">Insertion Sort</option>
+        <option value="merge">Merge Sort</option>
+        <option value="quick">Quick Sort</option>
+        <option value="heap">Heap Sort</option>
+      </select>
+      <div id="raceBarsA" class="race-bars"></div>
     </div>
+
+    <div class="race-col">
+      <label>Algorithm B:</label>
+      <select id="raceB">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="insertion">Insertion Sort</option>
+        <option value="merge">Merge Sort</option>
+        <option value="quick">Quick Sort</option>
+        <option value="heap">Heap Sort</option>
+      </select>
+      <div id="raceBarsB" class="race-bars"></div>
+    </div>
+
+  </div>
+
+  <div class="controls">
+    <button id="raceRun">Race!</button>
+    <button id="raceReset">Reset</button>
+  </div>
+
+  <div id="raceWinner"></div>
+</div>
+
 
     <!-- RIGHT COLUMN -->
     <div>
