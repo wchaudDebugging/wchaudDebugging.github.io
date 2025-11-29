@@ -145,6 +145,46 @@ button.primary {
   padding: 6px;
 }
 
+/* --- Desktop fix for Sorting Race --- */
+.race-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.race-col {
+  width: 45%;
+  min-width: 330px;
+}
+
+/* Ensure bars are visible on desktop */
+.race-bars {
+  height: 160px !important;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+}
+
+/* Bars are explicitly visible */
+.race-bars .bar {
+  background: #4da3ff;
+  width: 6px;
+  min-height: 4px;
+  display: inline-block;
+}
+
+/* Winner text spacing */
+#raceWinner {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+
 /* -------------------------------
    Mobile
 --------------------------------*/
