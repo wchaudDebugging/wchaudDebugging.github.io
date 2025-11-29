@@ -26,17 +26,6 @@ function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
 
-// --- Desktop Rendering Fix ---
-function initRaceRender() {
-  const [arrA, arrB] = generateRaceArrays();
-  drawRaceBars(arrA, raceBarsA);
-  drawRaceBars(arrB, raceBarsB);
-}
-
-window.addEventListener('load', initRaceRender);
-window.addEventListener('resize', initRaceRender);
-
-
 /* ----------------------------------------------------------
    SOUND ENGINE
 -----------------------------------------------------------*/
@@ -68,7 +57,7 @@ function beep(value) {
   ensureAudio();
   if (!audioCtx) return;
 
-  const frequency = 200 + value * 12; // maps 10–100 → 320–1400hz
+  const frequency = 200 + value * 12;
   const durationMs = 25;
 
   const osc = audioCtx.createOscillator();
@@ -91,7 +80,6 @@ function beep(value) {
 const mazeCanvas = $('mazeCanvas');
 const ctx = mazeCanvas.getContext('2d');
 
-// Smaller grid for desktop
 const GRID_SIZE = 15;
 const CELL_SIZE = Math.floor(mazeCanvas.width / GRID_SIZE);
 
@@ -333,7 +321,6 @@ $('mazeResetBtn').onclick = () => {
   }
 };
 
-// init
 createMazeGrid();
 generateMaze();
 
@@ -348,7 +335,7 @@ const sortReset = $('sortReset');
 let sortArray = [];
 let sorting = false;
 
-let sortSpeed = 1; // multiplier
+let sortSpeed = 1;
 
 $('slowDownBtn').onclick = () => {
   sortSpeed = clamp(sortSpeed / 2, 0.25, 8);
@@ -360,7 +347,6 @@ $('speedUpBtn').onclick = () => {
 };
 
 function generateSortArray() {
-  // fixed size for clean visuals
   const size = 32;
   const arr = [];
   for (let i = 0; i < size; i++) {
@@ -560,7 +546,6 @@ sortReset.onclick = () => {
   drawBars(sortArray, barsBox);
 };
 
-/* init sorting */
 sortArray = generateSortArray();
 drawBars(sortArray, barsBox);
 
@@ -790,8 +775,7 @@ raceReset.onclick = () => {
   drawRaceBars(a2, raceBarsB);
 };
 
-// Initialize race visualizers
-(() => {
+(function initRace() {
   const [a1, a2] = generateRaceArrays();
   drawRaceBars(a1, raceBarsA);
   drawRaceBars(a2, raceBarsB);
